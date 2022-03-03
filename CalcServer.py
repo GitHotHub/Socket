@@ -3,7 +3,7 @@ from threading import Thread
 import json
 
 HOST="127.0.0.1"
-PORT=65432
+PORT=22225
 
 def ricevi_comandi(sock_service, addr_client):
     print("avviato")
@@ -55,5 +55,5 @@ def avvia_server(HOST,PORT):
     print("Server in ascolto su %s." % str((HOST, PORT)))
     ricevi_connessioni(sock_listen)
 
-if __name__=='main_':
+if __name__=='__main__':
     avvia_server(HOST,PORT)
