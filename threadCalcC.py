@@ -65,11 +65,17 @@ if __name__ == '__main__':
     end_time=time.time()
     print("Total THREADS time= ", end_time - start_time)
 
-    """start_time=time.time()
+    start_time=time.time()
     process=[]
     # 7 ciclo per chiamare NUM_WORKERS volte la funzione genera richieste tramite l'avvio di un processo al quale passo i parametri args=(num,SERVER_ADDRESS, SERVER_PORT,)
-    # ad ogni iterazione appendo il thread creato alla lista threads
+    for i in range(NUM_WORKERS):
+        processo=multiprocessing.Process(target=genera_richieste, args=(i,SERVER_ADDRESS, SERVER_PORT))
+        process.append(processo)# ad ogni iterazione appendo il thread creato alla lista threads
     # 8 avvio tutti i processi
-    # 9 aspetto la fine di tutti i processi 
+    for processo in process:
+        processo.start()
+    # 9 aspetto la fine di tutti i processi
+    for processo in process:
+        processo.join()
     end_time=time.time()
-    print("Total PROCESS time= ", end_time - start_time)"""
+    print("Total PROCESS time= ", end_time - start_time)
